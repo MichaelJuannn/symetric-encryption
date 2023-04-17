@@ -2,9 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+	min-height: 100%;
+	background: black;
+}
+
 body {
-	background-color: bisque;
-	margin: 1rem;
+	min-height: 100%;
+	color: blueviolet;
 }
 
 p {
