@@ -3,13 +3,11 @@
 @tailwind utilities;
 
 html {
-	min-height: 100%;
 	background: black;
 }
 
 body {
-	min-height: 100%;
-	color: blueviolet;
+	color: rgb(34, 174, 94);
 }
 
 p {
