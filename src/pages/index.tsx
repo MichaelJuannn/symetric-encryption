@@ -3,9 +3,9 @@ import { useEffect, useState } from 'react';
 export default function Home() {
 	const iv = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
 	const [message, setMessage] = useState('');
-	const [key, setKey] = useState<Buffer>();
-	const [cipher, setCipher] = useState('');
-	useEffect(() => setKey(randomBytes(32)), []);
+	const [key, setKey] = useState<string>();
+	const [cipher, setCipher] = useState<string>();
+	useEffect(() => setKey(randomBytes(16).toString('hex')), []);
 	console.log(key);
 
 	function encrypt() {
@@ -45,7 +45,7 @@ export default function Home() {
 					<div className='p-2 m-3 bg-slate-800'>{key}</div>
 					<button
 						className='p-2 m-3 bg-violet-600 shadow shadow-violet-600  text-white rounded'
-						onClick={() => setKey(randomBytes(32))}
+						onClick={() => setKey(randomBytes(16).toString('hex'))}
 					>
 						Generate new Key
 					</button>
