@@ -1,5 +1,7 @@
-import { createCipheriv, randomBytes } from 'crypto';
+import { createCipheriv, randomBytes, createDecipheriv } from 'crypto';
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import Navbar from '@/components/navbar';
 export default function Home() {
 	const iv = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
 	const [message, setMessage] = useState('');
@@ -13,12 +15,12 @@ export default function Home() {
 		//@ts-ignore
 		const cipher = createCipheriv('aes256', key, iv);
 		const encrypted =
-			cipher.update(message, 'utf-8', 'hex') + cipher.final('hex');
+			cipher.update(message, 'utf8', 'hex') + cipher.final('hex');
 		setCipher(encrypted);
 	}
-
 	return (
 		<>
+			<Navbar />
 			<div className=''>
 				<div>
 					<p className='text-6xl md:text-8xl text-center mb-5'>
@@ -58,24 +60,27 @@ export default function Home() {
 					>
 						ENCRYPT
 					</button>
-					<button
-						className='py-2 px-4 m-3 rounded border border-gray-200 font-semibold hover:text-white hover:bg-green-700 hover:border-green-700 focus:outline-none active:ring-2 active:ring-green-700 active:ring-offset-2 transition-all text-sm'
-						onClick={() => {
-							navigator.clipboard.writeText(key ?? ' I Love U <3');
-							setShowCopy(true);
-						}}
-					>
-						COPY KEY TO CLIPBOARD 🔑
-					</button>
-					<button
-						className='py-2 px-4 m-3 rounded border border-gray-200 font-semibold hover:text-white hover:bg-green-700 hover:border-green-700 focus:outline-none active:ring-2 active:ring-green-700 active:ring-offset-2 transition-all text-sm'
-						onClick={() => {
-							navigator.clipboard.writeText(cipher ?? 'I Love U <3');
-							setShowCopy(true);
-						}}
-					>
-						COPY CIPHER TO CLIPBOARD 📋
-					</button>
+					<div>
+						<button
+							className='py-2 px-4 m-3 w-48 rounded border border-gray-200 font-semibold hover:text-white hover:bg-green-700 hover:border-green-700 focus:outline-none active:ring-2 active:ring-green-700 active:ring-offset-2 transition-all text-sm'
+							onClick={() => {
+								navigator.clipboard.writeText(key ?? ' I Love U <3');
+								setShowCopy(true);
+							}}
+						>
+							COPY KEY TO CLIPBOARD 🔑
+						</button>
+						<button
+							className='py-2 px-4 m-3 w-48 rounded border border-gray-200 font-semibold hover:text-white hover:bg-green-700 hover:border-green-700 focus:outline-none active:ring-2 active:ring-green-700 active:ring-offset-2 transition-all text-sm'
+							onClick={() => {
+								navigator.clipboard.writeText(cipher ?? 'I Love U <3');
+								setShowCopy(true);
+							}}
+						>
+							COPY CIPHER TO CLIPBOARD 📋
+						</button>
+					</div>
+
 					<div className='flex'>{showCopy && <Copy />}</div>
 				</div>
 			</div>

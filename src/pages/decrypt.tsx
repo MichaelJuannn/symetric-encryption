@@ -1,5 +1,6 @@
-import { createDecipheriv, randomBytes } from 'crypto';
-import { useEffect, useState } from 'react';
+import { createDecipheriv } from 'crypto';
+import { useState } from 'react';
+import Navbar from '@/components/navbar';
 
 export default function Decrypt() {
 	const iv = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
@@ -11,14 +12,19 @@ export default function Decrypt() {
 
 	function decrypt() {
 		//@ts-ignore
-		const decipher = createDecipheriv('aes256', buff32, iv);
-		const decrypted =
-			decipher.update(input, 'hex', 'utf-8') + decipher.final('utf-8');
-		setResult(decrypted);
+		const decipher = createDecipheriv('aes256', key, iv);
+		try {
+			const decrypted =
+				decipher.update(input, 'hex', 'utf8') + decipher.final('utf8');
+			setResult(decrypted);
+		} catch (error) {
+			console.log(error);
+		}
 	}
 
 	return (
 		<>
+			<Navbar />
 			<h1 className='text-8xl'>DECRYPT</h1>
 			<input
 				type='text'
