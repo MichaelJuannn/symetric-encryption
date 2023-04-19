@@ -7,38 +7,56 @@ export default function Decrypt() {
 
 	const [input, setInput] = useState('');
 	const [key, setKey] = useState<string>();
-	const [result, setResult] = useState('');
+	const [result, setResult] = useState<string>();
 	console.log(result);
 
-	function decrypt() {
-		//@ts-ignore
-		const decipher = createDecipheriv('aes256', key, iv);
+	function decrypt(key: string) {
 		try {
+			setKey(key);
+			//@ts-ignore
+			const decipher = createDecipheriv('aes256', key, iv);
 			const decrypted =
 				decipher.update(input, 'hex', 'utf8') + decipher.final('utf8');
 			setResult(decrypted);
 		} catch (error) {
-			console.log(error);
+			return error;
 		}
 	}
 
 	return (
 		<>
 			<Navbar />
-			<h1 className='text-8xl'>DECRYPT</h1>
-			<input
-				type='text'
-				className='m-2 bg-yellow-400'
-				onChange={(e) => setInput(e.currentTarget.value)}
-			/>
-			<input
-				type='text'
-				className='m-2'
-				onChange={(e) => setKey(e.currentTarget.value)}
-			/>
-			<button className='p-2 rounded bg-blue-400' onClick={decrypt}>
-				decrypt
-			</button>
+			<h1 className='text-5xl md:text-7xl text-center'>DECRYPT</h1>
+			<div className='md:flex '>
+				<div className='flex-none'>
+					<div>
+						<label className='mx-8 m-2 text-xl' htmlFor='cipher'>
+							Insert Your Cipher Text 🕵️‍♀️
+						</label>
+						<input
+							id='cipher'
+							type='text'
+							className='block w-60 p-4 mx-8 mt-2 mb-5 rounded ring ring-green-700 bg-gray-100'
+							onChange={(e) => setInput(e.currentTarget.value)}
+						/>
+					</div>
+					<div>
+						<label className='mx-8 m-2 text-xl' htmlFor='key'>
+							Insert Your Key 🔑
+						</label>
+						<input
+							id='key'
+							type='text'
+							className='block w-60 p-4 mx-8 mt-2 rounded ring ring-green-700 bg-gray-100'
+							onChange={(e) => decrypt(e.currentTarget.value)}
+						/>
+					</div>
+				</div>
+				<div className='flex-grow bg-slate-900 m-4 text-center rounded p-2'>
+					<div className='text-xl font-bold'>RESULT</div>
+					<p className='text-start'>{result ?? '👈 Fill The form'}</p>
+				</div>
+			</div>
 		</>
 	);
 }
