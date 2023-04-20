@@ -1,7 +1,7 @@
 import { createCipheriv, randomBytes, createDecipheriv } from 'crypto';
-import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import Navbar from '@/components/navbar';
+import BaseHead from '@/components/basehead';
 export default function Home() {
 	const iv = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
 	const [message, setMessage] = useState('');
@@ -9,7 +9,6 @@ export default function Home() {
 	const [cipher, setCipher] = useState<string>();
 	const [showCopy, setShowCopy] = useState<boolean>();
 	useEffect(() => setKey(randomBytes(16).toString('hex')), []);
-	console.log(key);
 
 	function encrypt() {
 		//@ts-ignore
@@ -20,6 +19,7 @@ export default function Home() {
 	}
 	return (
 		<>
+			<BaseHead />
 			<Navbar />
 			<div className=''>
 				<div>

@@ -1,6 +1,8 @@
 import { createDecipheriv } from 'crypto';
 import { useState } from 'react';
+import Link from 'next/link';
 import Navbar from '@/components/navbar';
+import BaseHead from '@/components/basehead';
 
 export default function Decrypt() {
 	const iv = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
@@ -8,7 +10,6 @@ export default function Decrypt() {
 	const [input, setInput] = useState('');
 	const [key, setKey] = useState<string>();
 	const [result, setResult] = useState<string>();
-	console.log(result);
 
 	function decrypt(key: string) {
 		try {
@@ -25,6 +26,7 @@ export default function Decrypt() {
 
 	return (
 		<>
+			<BaseHead />
 			<Navbar />
 			<h1 className='text-5xl md:text-7xl text-center'>DECRYPT</h1>
 			<div className='md:flex '>
@@ -54,9 +56,18 @@ export default function Decrypt() {
 				</div>
 				<div className='flex-grow bg-slate-900 m-4 text-center rounded p-2'>
 					<div className='text-xl font-bold'>RESULT</div>
-					<p className='text-start'>{result ?? '👈 Fill The form'}</p>
+					<p className='text-start'>
+						{result ?? '👈 Your key or cipher is invalid 💀'}
+					</p>
 				</div>
 			</div>
+			<Link
+				href={'https://michaeljuannn.github.io/'}
+				className=' p-2 rounded m-5 md:m-10 bg-indigo-900 inline-block '
+			>
+				Made with 💚 by Juan
+			</Link>
+			<span>👈 Click it</span>
 		</>
 	);
 }
