@@ -20,9 +20,9 @@ export default function About() {
 						height={500}
 					></Image>
 				</div>
-				<div>
+				<div className='mx-auto md:w-2/3'>
 					<h2 className='text-2xl font-bold'>What is Symmetric Encryption ?</h2>
-					<p className='md:w-1/2 text-justify indent-5'>
+					<p className='text-justify indent-5'>
 						Symmetric encryption is a cryptographic method whereby the same
 						secret key is used for both data encryption and decryption. It is a
 						data encryption method whereby the same key is used to encode and
@@ -32,9 +32,9 @@ export default function About() {
 						encryption.
 					</p>
 				</div>
-				<div>
+				<div className='mx-auto md:w-2/3'>
 					<h2 className='text-2xl font-bold'>What is Symmetric Encryption ?</h2>
-					<p className='md:w-1/2 text-justify indent-5'>
+					<p className='text-justify indent-5'>
 						To use symmetric encryption in Node.js, you can use the built-in
 						library called crypto. The crypto library provides functions to
 						carry out cryptographic operations such as hash, HMAC, cipher,
@@ -59,13 +59,15 @@ export default function About() {
 						</li>
 					</ol>
 				</div>
-				<Link
-					href={'https://michaeljuannn.github.io/'}
-					className=' p-2 rounded m-5 bg-indigo-900 inline-block '
-				>
-					Made with 💚 by Juan
-				</Link>
-				<span>👈 Click it</span>
+				<div className='mx-auto w-2/3 m-4'>
+					<Link
+						href={'https://michaeljuannn.github.io/'}
+						className='p-2 rounded bg-indigo-900 inline-block '
+					>
+						Made with 💚 by Juan
+					</Link>
+					<span>👈 Click it</span>
+				</div>
 			</main>
 		</>
 	);
